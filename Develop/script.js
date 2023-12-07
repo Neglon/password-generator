@@ -12,6 +12,8 @@ function getInput() {
   var length = parseInt(
     prompt('Choose the length of your password. Must Be a min. of 8 and a max of 126')
   )
+
+
   //logging to make sure it is working
   console.log(length);
   if (isNaN(length) || length < 8 || length > 126) {
@@ -65,19 +67,92 @@ function getRandomIndex(array) {
 /* for loop to test that the randomizer does infact work as intended.  NOTE i discovered that when returning a variable from a function
 such as randomCharacter, it is not returning the variable name, but only what the variable holds, to use that variable it needs to be redifined outside of the functions scope that 
 it came from */
-for (i=0; i <5; i++) {
+/*for (i=0; i <5; i++) {
   var randomChar = getRandomIndex(upperCase);
   console.log(randomChar);
+}*/
+
+
+//generate password function
+function generatePassword() {
+
+/*empty arrays to hold chosen elements for password, the 2nd array is for the characters that must be included, doesnt seem to be a way without 2 different arrays to make sure
+that you are guaranteed a selection of a chosen type*/
+var chosenElements = [];
+var needElements = [];
+
+//this calls the getInput function and gives the object value that is a returned a variable name
+var finalChoices = getInput();
+//console logging to make sure the newly defined object hass the correct porperties
+console.log(finalChoices);
+
+/*checks to see if the password was given the has upper case choice, if true, adds the upper case array to the chosenElements array
+It also takes one random element from the upper case array and adds it to the needElement array, console log both to make sure they work*/ 
+if (finalChoices.hasUppercase === true) {
+  chosenElements = chosenElements.concat(upperCase)
+  needElements.push(getRandomIndex(upperCase));
+  console.log(chosenElements);
+  console.log(needElements);
 }
 
+/*checks to see if the password was given the has lower case choice, if true, adds the lower case array to the chosenElements array
+It also takes one random element from the lower case array and adds it to the needElement array, console log both to make sure they work*/ 
+if (finalChoices.hasLowerCase === true) {
+  chosenElements = chosenElements.concat(lowerCase)
+  needElements.push(getRandomIndex(lowerCase));
+  console.log(chosenElements);
+  console.log(needElements);
+}
 
+/*checks to see if the password was given the has numbers choice, if true, adds the unumbers array to the chosenElements array
+It also takes one random element from the numbers array and adds it to the needElement array, console log both to make sure they work*/ 
+if (finalChoices.hasNumbers === true) {
+  chosenElements = chosenElements.concat(numbers)
+  needElements.push(getRandomIndex(numbers));
+  console.log(chosenElements);
+  console.log(needElements);
+}
 
+/*checks to see if the password was given the has special characters choice, if true, adds the special characters array to the chosenElements array
+It also takes one random element from the special characters array and adds it to the needElement array, console log both to make sure they work*/ 
+if (finalChoices.hasSpecialCharacters === true) {
+  chosenElements = chosenElements.concat(specialCharacters)
+  needElements.push(getRandomIndex(specialCharacters));
+  console.log(chosenElements);
+  console.log(needElements);
+}
+//array to hold final constructed password
+var password = [];
+
+/*for loop that iterates through building the password to the length of the overall chosen length minus the length of how many special charcter types
+are chosen, to leave room for them in the next for loop to make sure the passwords final length is the correct length*/
+for (var i = 0; i < (finalChoices.length-needElements.length); i++) {
+  password.push(getRandomIndex(chosenElements))
+}
+
+//for loop to iterate through the needElements array, and placing the required needed options to the end of the password array
+for (var i = 0; i < needElements.length; i++) {
+  password.push(needElements[i]);
+}
+//console logging the password array to make sure it is the correct length and contains the required properties
+console.log(password);
+
+//this changes the value of the password array to a string, using the join method, the empty apostophe marks removes any commas or space between characters
+password = password.join('');
+
+//creates and alert window with the newly created password
+alert(password);
+
+// returns the password value to the generatePassword function
+  return password;
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+// Write password to the #password input 
 function writePassword() {
+  //creates a variable password that takes whatever the generatePassword function returns
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
@@ -87,8 +162,7 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword,);
-//i added this to start testing the prompts
-generateBtn.addEventListener("click", getInput) 
+
   
 
 
