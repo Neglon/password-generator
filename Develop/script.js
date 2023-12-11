@@ -16,8 +16,8 @@ function getInput() {
 
   //logging to make sure it is working
   console.log(length);
-  if (isNaN(length) || length < 8 || length > 126) {
-    alert('Must use numbers in the range of 8-126');
+  if (isNaN(length) || length < 8 || length > 128) {
+    alert('Must use numbers in the range of 8-128');
     return;
   }
   //ask if user wants uppercase in the pw
