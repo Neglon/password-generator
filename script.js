@@ -10,7 +10,7 @@ var specialCharacters = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", 
 //function to aquire password length and includeded characters
 function getInput() {
   var length = parseInt(
-    prompt('Choose the length of your password. Must Be a min. of 8 and a max of 126')
+    prompt('Choose the length of your password. Must Be a min. of 8 and a max of 128')
   )
 
 
