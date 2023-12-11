@@ -8,7 +8,7 @@
 
 ## Installation
     Web Page is in the link below
-[Password-Generator](https://neglon.github.io/password-Generator)
+[Password-Generator](https://neglon.github.io/password-generator/)
 
 ## Usage
     Upon visiting the page, click the red generate password button to begin. You will then one by one be prompted with choices begiinging with desired password length, then if you want to include uppercase, followed by lowercase, followed by numbers and then finally with special characters. Clicking cancel on any of the choice prompts will take that as not to include the specified character type. Then once all choices are made an alert window will pop up with the password, and after clicking ok the password will then be printed to the webpage.
